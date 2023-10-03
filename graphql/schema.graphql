@@ -46,7 +46,13 @@ type Query {
 #     name
 #   }
 # }
+# mutation {
+#   deleteUser(id: 11) {
+#     id
+#   }
+# }
 type Mutation {
   createUser(name: String!, email: String!, password: String!): User! @create
-  updateUser(id: ID!, name: String, email: String, password: String): User! @update
+  updateUser(id: ID! @whereKey, name: String, email: String, password: String): User! @update
+  deleteUser(id: ID @whereKey): User @delete
 }
