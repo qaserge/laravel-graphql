@@ -5,39 +5,23 @@ type User {
 }
 
 # example of use: 
-# user(id:2) {
-#  name
+# {
+#   users (first:2, page:1) {
+#     data {
+#       name
+#       id
+#       email
+#     }
+#     paginatorInfo {
+#       currentPage
+#       lastPage
+#       hasMorePages
+#       lastItem
+#       total
+#     }
+#   }
 # }
-"""
 type Query {
-  users: [User!] @all
-}
-"""
-
-# example of use: 
-# user(id:2) {
-#  name
-# }
-type Query {
-  users: [User!] @all
+  users: [User!] @paginate
   user(id: ID! @eq) : User @find #filter by user id
 }
-
-# Aliases
-# 1. Give your aliases meaningful names that describe what data you expect to receive.
-# 2. Using Aliases to Avoid Naming Conflicts. for example when you request multiple objects of the same type with different fields
-#  user1: user(id:2){
-#    name
-#  }
-#  user2: user(id:4){
-#    email
-#  }
-# 3. Batch Requests: You can use aliases to make multiple requests in a single HTTP request.
-# 4. Aliases for fragments so that they do not conflict in name with other parts of the request
-#  user: getUser(id: "123") {
-#    ...userFields
-#  }
-#}
-#fragment userFields on User {
-#  name
-#  email
