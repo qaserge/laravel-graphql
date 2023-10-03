@@ -36,6 +36,17 @@ type Query {
 #     name
 #   }
 # }
+# mutation {
+#   updateUser(
+#     id: 11,
+#     name:"Test2",
+#   	email: "test2@test.com",
+#   	password: "test") {
+#     id
+#     name
+#   }
+# }
 type Mutation {
   createUser(name: String!, email: String!, password: String!): User! @create
+  updateUser(id: ID!, name: String, email: String, password: String): User! @update
 }
