@@ -25,3 +25,17 @@ type Query {
   users: [User!] @paginate
   user(id: ID! @eq) : User @find #filter by user id
 }
+
+# example of use:
+# mutation {
+#   createUser(
+#     name:"Test",
+#   	email: "test@test.com",
+#   	password: "test") {
+#     id
+#     name
+#   }
+# }
+type Mutation {
+  createUser(name: String!, email: String!, password: String!): User! @create
+}
