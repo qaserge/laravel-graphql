@@ -56,3 +56,22 @@ type Mutation {
   updateUser(id: ID! @whereKey, name: String, email: String, password: String): User! @update
   deleteUser(id: ID @whereKey): User @delete
 }
+
+
+# ------ Cpmpany -----------
+type Company {
+  id: ID!
+  name: String!
+  contact_email: String!
+  street_address: String!
+  city: String!
+  country: String!
+  domain: String!
+  created_at: String!
+  updated_at: String
+}
+
+type Query {
+  companies: [Company!] @paginate
+  company(id: ID! @eq) : Company @find
+}
